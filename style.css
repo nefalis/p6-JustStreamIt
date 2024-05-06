@@ -86,7 +86,8 @@ body {
 .category_film {
     width: 250px;
     height: 245px;
-    margin: 5px;
+    margin-left: 16px;
+    margin-right: 16px;
     position: relative;
 }
 
@@ -130,6 +131,7 @@ body {
 .select_category_choice {
     display: flex;
     flex-direction: row;
+    margin-bottom: 60px;
 }
 
 .select_category_title {
@@ -139,7 +141,40 @@ body {
 
 }
 
+.select_category_list  {
+    width: 405px;
+    border: 1px solid black;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 53px;
+    height: 78px;
+    margin-left: 14px;
+    font-family: "Oswald", sans-serif;
+    padding-left: 14px;
+}
+
 .select_category_list {
+    content: url("assets/arrow.png"); 
+
+}
+
+.select_category_option {
+    margin-left: 14px;
+    font-family: "Oswald", sans-serif;
+
+}
+
+.select_category_option:hover {
+    background-color: #E7E7E7!important;
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+
+}
+
+
+
+/* .select_category_list {
     width: 405px;
 }
 
@@ -164,10 +199,34 @@ body {
 
 .select_category_list li:hover{
     background-color: #E7E7E7;
+} */
+
+
+/***** modal *****/
+/* .modal_container {
+    display: none;
+    position: fixed;
 }
 
+.modal_container.active {
+    display: block;
+} */
 
+.dialog_modal {
+    position: absolute;
+    border: 6px solid black;
+}
 
-
-
+.modal_close_btn {
+    border-radius: 25px;
+    background-color: #FA0B0B;
+    border: 1px solid #FA0B0B;
+    padding: 2px 4px;
+    color: white;
+    font-size: 20px;
+    width: 214px;
+    height: 36px;
+    cursor: pointer;
+    margin-right: 14px;
+}
 
