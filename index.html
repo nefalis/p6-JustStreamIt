@@ -18,23 +18,30 @@
 
 <section class="modal_container" id="myModal">
     <dialog class="dialog_modal" id="dialog_modal">
-        <div class="modal_detail_film">
-            <h2 class="modal_detail_title" id="title"></h2>
-            <p class="modal_detail_date" id="year"></p> <p class="modal_detail_genre" id="genres"></p>
-        
-            <p class="modal_detail_classification" id="classification"></p> <p class="modal_detail_during" id="duration"></p> <p class="modal_detail_country" id="countries"></p>
-            
-            <p class="modal_detail_IMDB" id="imbd_score"></p>
-            <p>Réalisé par:</p>
-            <p class="modal_detail_director" id="directors"></p>
+        <div class="modal_info">
+            <div class="modal_detail_film">
+                <h2 class="modal_detail_title" id="modal_detail_title"></h2>
+
+                <p class="modal_detail_date" id="modal_detail_date"></p> 
+                <p class="modal_detail_genre" id="modal_detail_genre"></p>
+
+                <p class="modal_detail_classification" id="modal_detail_classification"></p> 
+                <p class="modal_detail_duration" id="modal_detail_duration"></p>
+                <p class="modal_detail_country" id="modal_detail_country"></p>
+
+                <p class="modal_detail_IMDB" id="modal_detail_IMDB"></p>
+
+                <p>Réalisé par:</p>
+                <p class="modal_detail_director" id="modal_detail_director"></p>
+            </div>
+            <img class="modal_img" alt="" src="" id="modal_img"></img>
         </div>
-        <img class="modal_img" alt="" src=""></img>
         <div class="modal_description">
             <p class="modal_description_film" id="long_description"></p>
         </div>
         <div class="modal_actor">
             <p>Avec :</p>
-            <p class="modal_actor_list" id="actors"></p>
+            <p class="modal_actor_list" id="modal_actor_list"></p>
         </div>
         <button autofocus class="modal_close_btn" id="modal_close_btn">Fermer</button>
     </dialog>
@@ -43,60 +50,16 @@
 <section class="best_film" >
     <h2 class="best_film_title_section">Meilleur film</h2>
     <div class="best_film_container">
-        <img class="best_film_img" alt="" src="" id="image_url"></img>
+        <img class="best_film_img" alt="" src="" id="best_film_img"></img>
         <div class="best_film_detail">
-            <h2 class="best_film_title" id="title"></h2>
-            <p class="best_film_description" id="description"></p>
+            <h2 class="best_film_title" id="best_film_title"></h2>
+            <p class="best_film_description" id="best_film_description"></p>
             <button id="modal_open_btn" class="best_film_button">Détails</button>
         </div>
     </div>
 </section>
 
 <section class="category">
-    <h2 class="category_title_section">Catégorie 1</h2>
-    <div class="category_film_container">
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="modal_open_btn" >Détails</button>
-            </div>
-        </div>        
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>   
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>    
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>     
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>   
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover" id="image_url">
-            <div class="category_film_content">
-                <h3 class="category_film_title" id="title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>  
 
 </section>
 
@@ -168,9 +131,8 @@
     </div>
 </section>
 
-
-<script src="js/category.js"></script>
 <script src="js/modal.js"></script>
+<script src="js/category.js" type="module"></script>
 
 </body>
 

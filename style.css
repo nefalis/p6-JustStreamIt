@@ -69,6 +69,59 @@ body {
     margin-right: 14px;
 }
 
+/***** modal  *****/
+.dialog_modal {
+    width: 778px;
+    height: auto;
+}
+
+.modal_info {
+    display: flex;
+}
+.modal_detail_film {
+    width: 423px;
+    height: 360px;
+    padding-right: 20px;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+
+.modal_img {
+    width: 227px;
+    height: 334px;
+    left:22px
+}
+
+.modal_detail_title{
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.modal_detail_date, .modal_detail_genre {
+    display: inline-block; 
+    margin-right: 20px; 
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.modal_detail_classification, .modal_detail_duration, .modal_detail_country {
+    display: inline-block; 
+    margin-right: 20px; 
+    font-size: 24px;
+    font-weight: 600;  
+}
+
+.modal_detail_director {
+    font-weight: normal; 
+    margin-top: 20px; 
+}
+
+.modal_detail_IMDB {
+    margin-top: 20px;
+}
+
+
 /***** section catégorie *****/
 
 .category_title_section{
@@ -89,11 +142,13 @@ body {
     margin-left: 16px;
     margin-right: 16px;
     position: relative;
+    background-color: lightgrey;
 }
 
 .category_film_img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
 }
 
 .category_film_content {
@@ -107,9 +162,10 @@ body {
 
 .category_film_title {
     color: white;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     margin-left: 21px;
+    position:absolute
 }
 
 .category_film_button {
@@ -122,8 +178,9 @@ body {
     font-size: 14px;
     padding: 5px 15px;
     margin-top: 65px;
-    margin-left: 30px;
+    margin-left: 154px;
     cursor: pointer;
+    position: absolute;
 }
 
 /***** Catégory avec menu *****/
@@ -132,6 +189,7 @@ body {
     display: flex;
     flex-direction: row;
     margin-bottom: 60px;
+    overflow: hidden;
 }
 
 .select_category_title {
