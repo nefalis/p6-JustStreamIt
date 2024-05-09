@@ -69,7 +69,33 @@ body {
     margin-right: 14px;
 }
 
+.best_film_title_section {
+   font-size: 48px;
+   font-weight: 600; 
+}
+
 /***** modal  *****/
+.dialog_modal {
+    position: absolute;
+    border: 6px solid black;
+}
+
+.modal_close_btn {
+    border-radius: 25px;
+    background-color: #FA0B0B;
+    border: 1px solid #FA0B0B;
+    padding: 2px 4px;
+    color: white;
+    font-size: 20px;
+    width: 214px;
+    height: 36px;
+    cursor: pointer;
+    margin-top: 40px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .dialog_modal {
     width: 778px;
     height: auto;
@@ -78,18 +104,19 @@ body {
 .modal_info {
     display: flex;
 }
+
 .modal_detail_film {
     width: 423px;
     height: 360px;
     padding-right: 20px;
     box-sizing: border-box;
-    flex-direction: column;
 }
 
 .modal_img {
     width: 227px;
     height: 334px;
-    left:22px
+    margin-top: 34px;
+    background-color: lightgrey;
 }
 
 .modal_detail_title{
@@ -100,25 +127,51 @@ body {
 
 .modal_detail_date, .modal_detail_genre {
     display: inline-block; 
-    margin-right: 20px; 
+    margin: 0px;
     font-size: 24px;
     font-weight: 600;
 }
 
 .modal_detail_classification, .modal_detail_duration, .modal_detail_country {
     display: inline-block; 
-    margin-right: 20px; 
+    margin: 0px;
     font-size: 24px;
     font-weight: 600;  
 }
 
 .modal_detail_director {
-    font-weight: normal; 
-    margin-top: 20px; 
+    font-weight: 300; 
+    font-size: 24px;
+    margin: 0px;
+}
+.modal_detail_director_p {
+    font-weight: 400; 
+    font-size: 24px; 
+    margin: 20px 0 0 0;
 }
 
 .modal_detail_IMDB {
-    margin-top: 20px;
+    font-size: 24px;
+    font-weight: 600; 
+    margin: 0px;
+}
+
+.modal_description_film {
+    font-weight: 300;
+    font-size: 24px;
+}
+
+.modal_actor{
+    font-size: 20px;
+
+}
+.modal_actor_p {
+    font-weight: 400;
+    margin: 0px;
+}
+.modal_actor_list {
+    font-weight: 300;
+    margin: 0px;
 }
 
 
@@ -184,107 +237,77 @@ body {
 }
 
 /***** Catégory avec menu *****/
-
-.select_category_choice {
+.dropdown_container {
     display: flex;
-    flex-direction: row;
-    margin-bottom: 60px;
-    overflow: hidden;
+    align-items: center;
+    position: relative;
 }
 
 .select_category_title {
     font-size: 48px;
     font-weight: 600;
-    display: contents;
-
+    margin: 0 10px 0 0;
 }
 
-.select_category_list  {
-    width: 405px;
-    border: 1px solid black;
+.dropdown_wrapper{
+    position: relative;
     font-size: 36px;
     font-weight: 600;
-    line-height: 53px;
-    height: 78px;
-    margin-left: 14px;
-    font-family: "Oswald", sans-serif;
-    padding-left: 14px;
+    width: 400px;
 }
 
-.select_category_list {
-    content: url("assets/arrow.png"); 
-
-}
-
-.select_category_option {
-    margin-left: 14px;
-    font-family: "Oswald", sans-serif;
-
-}
-
-.select_category_option:hover {
-    background-color: #E7E7E7!important;
-    appearance:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-
-}
-
-
-
-/* .select_category_list {
-    width: 405px;
-}
-
-.select_category_list li {
-    border: 1px solid black;
-    font-size: 36px;
-    font-weight: 600;
-    line-height: 53px;
-    height: 78px;
-    margin-left: 14px;
-    list-style-type : none;
+.dropdown_btn{
+    padding: 8px 10px;
+    background-color: white;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-
-.select_category_list li a {
-    text-decoration: none;
-    color: black;
-    margin-left: 14px;
-    
-}
-
-.select_category_list li:hover{
-    background-color: #E7E7E7;
-} */
-
-
-/***** modal *****/
-/* .modal_container {
-    display: none;
-    position: fixed;
-}
-
-.modal_container.active {
-    display: block;
-} */
-
-.dialog_modal {
-    position: absolute;
-    border: 6px solid black;
-}
-
-.modal_close_btn {
-    border-radius: 25px;
-    background-color: #FA0B0B;
-    border: 1px solid #FA0B0B;
-    padding: 2px 4px;
-    color: white;
-    font-size: 20px;
-    width: 214px;
-    height: 36px;
     cursor: pointer;
-    margin-right: 14px;
+    border: 2px solid black;
+
 }
 
+.dropdown_menu{
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    width: 400px;
+    margin-top: 5px;
+    padding: 5px 0;
+    background-color: white;
+    opacity: 0.2;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.dropdown_menu.open{
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.dropdown_item {
+    padding: 8px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.dropdown_item:hover{
+    background-color: lightgrey;
+}
+
+.dropdown_item.active{
+    font-weight: bold;
+
+}
+
+/*****  category film select *****/
+
+.category_film_list{
+    display: flex;
+    flex-wrap: wrap;
+}

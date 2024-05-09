@@ -5,6 +5,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/19da068b1c.js" crossorigin="anonymous"></script>
     <link href="style.css" rel="stylesheet" />
     <title>JustStreamIt</title>
 
@@ -20,18 +21,18 @@
     <dialog class="dialog_modal" id="dialog_modal">
         <div class="modal_info">
             <div class="modal_detail_film">
-                <h2 class="modal_detail_title" id="modal_detail_title"></h2>
+                <h2 class="modal_detail_title" id="modal_detail_title"></h2><br />
 
                 <p class="modal_detail_date" id="modal_detail_date"></p> 
-                <p class="modal_detail_genre" id="modal_detail_genre"></p>
+                <p class="modal_detail_genre" id="modal_detail_genre"></p><br />
 
                 <p class="modal_detail_classification" id="modal_detail_classification"></p> 
                 <p class="modal_detail_duration" id="modal_detail_duration"></p>
-                <p class="modal_detail_country" id="modal_detail_country"></p>
+                <p class="modal_detail_country" id="modal_detail_country"></p><br />
 
                 <p class="modal_detail_IMDB" id="modal_detail_IMDB"></p>
 
-                <p>Réalisé par:</p>
+                <p class="modal_detail_director_p">Réalisé par:</p>
                 <p class="modal_detail_director" id="modal_detail_director"></p>
             </div>
             <img class="modal_img" alt="" src="" id="modal_img"></img>
@@ -40,7 +41,7 @@
             <p class="modal_description_film" id="long_description"></p>
         </div>
         <div class="modal_actor">
-            <p>Avec :</p>
+            <p class="modal_actor_p">Avec :</p>
             <p class="modal_actor_list" id="modal_actor_list"></p>
         </div>
         <button autofocus class="modal_close_btn" id="modal_close_btn">Fermer</button>
@@ -59,76 +60,28 @@
     </div>
 </section>
 
-<section class="category">
+<section class="category"></section>
 
-</section>
 
 <section class="select_category">
-    <div class="select_category_choice">
+    <div class="dropdown_container">
+
         <h2 class="select_category_title">Autres:</h2>
-        <select class="select_category_list" name="select_category_list" >
-            <img class="select_category_list_arrow" src="assets/arrow.png" alt="arrow"/>
-            <option value="#" id="genre" class="select_category_option">Action</option>
-            <option value="#" class="select_category_option">Horreur</option>
-            <option value="#" class="select_category_option">Animation</option>
-            <option value="#" class="select_category_option">Aventure</option>
-            <option value="#" class="select_category_option">Science-fiction</option>
-            <option value="#" class="select_category_option">Comédie</option>
-        </select>    
-        <!-- <ul class="select_category_list">
-            <li class="select_category_selected"><a href="#"> </a></li>
-            <li><a href="#">Action </a></li>
-            <li><a href="#">Horreur </a></li>
-            <li><a href="#">Animation </a></li>
-            <li><a href="#">Aventure</a></li>
-            <li><a href="#">Science-fiction</a></li>
-            <li><a href="#">Comédies</a></li>
-        </ul> -->
+
+        <div class="dropdown_wrapper">
+            <div class="dropdown_btn">
+                <span id="selected_item"></span>
+                <span><i class="fa-solid fa-caret-down"></i></span>
+            </div>
+        </div>
+
+        <div class="dropdown_menu" id="dropdown_menu"> </div>
+
     </div>
-    <div class="category_film_container">
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>        
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>     
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>     
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>     
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>     
-        <div class="category_film">
-            <img class="category_film_img" src="https://picsum.photos/200/300" alt="movie cover">
-            <div class="category_film_content">
-                <h3 class="category_film_title">Titre film</h3>
-                <button class="category_film_button" id="open_modal_btn">Détails</button>
-            </div>
-        </div>   
+
+    <div class="category_film_list">
     </div>
+
 </section>
 
 <script src="js/modal.js"></script>
