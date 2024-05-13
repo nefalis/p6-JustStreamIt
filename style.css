@@ -237,10 +237,12 @@ body {
 }
 
 /***** Catégory avec menu *****/
+
 .dropdown_container {
     display: flex;
-    align-items: center;
-    position: relative;
+    align-items: flex-start;
+    margin-bottom: 55px;
+    height: 80px;
 }
 
 .select_category_title {
@@ -250,10 +252,12 @@ body {
 }
 
 .dropdown_wrapper{
-    position: relative;
     font-size: 36px;
     font-weight: 600;
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    height: 300px;
 }
 
 .dropdown_btn{
@@ -264,13 +268,12 @@ body {
     align-items: center;
     cursor: pointer;
     border: 2px solid black;
-
 }
 
 .dropdown_menu{
-    position: absolute;
-    top: calc(100% + 5px);
-    right: 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
     width: 400px;
     margin-top: 5px;
     padding: 5px 0;
@@ -278,12 +281,19 @@ body {
     opacity: 0.2;
     transform: scaleY(0);
     transform-origin: top;
-    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .dropdown_menu.open{
     opacity: 1;
     transform: scaleY(1);
+    max-height: 250px;
+    overflow-y: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.dropdown_menu.open::-webkit-scrollbar{
+    display: none;
 }
 
 .dropdown_item {
@@ -294,6 +304,9 @@ body {
     align-items: center;
     background-color: white;
     border: 1px solid black;
+    height: 37px;
+    font-size: 36px;
+    font-weight: 600;
 }
 
 .dropdown_item:hover{
@@ -310,4 +323,5 @@ body {
 .category_film_list{
     display: flex;
     flex-wrap: wrap;
+    height: 560px;
 }

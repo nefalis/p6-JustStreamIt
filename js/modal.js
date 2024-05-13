@@ -41,7 +41,7 @@ function displayModal(movieId){
                     if (movieDetails.rated === "Not rated or unkown rating") {
                         ratedElement.textContent = " ";
                     } else {
-                        ratedElement.textContent = movieDetails.rated; 
+                        ratedElement.textContent = "PEG " + movieDetails.rated; 
                     }
                     dialog.showModal();
                 })

@@ -1,59 +1,55 @@
 
-// item de la liste
-const dropdownList = document.getElementById('dropdown_menu');
-function fetchDropdownItem() {
-    fetch(`http://localhost:8000/api/v1/genres/`)
-        .then(res => res.json())
-        .then(data => {
-            const genres = data.results
-            console.log(genres);
+function displayCategory(catResult, catText){
+    const catCategory = document.querySelector(".category")
 
-            genres.forEach(genre => {
-                const listGenre = document.createElement('div');
-                listGenre.classList.add("dropdown_item");
-                listGenre.textContent = genre.name;
+    const catTitle = document.createElement("h2")
+    catTitle.classList.add("category_title_section");
+    catTitle.textContent = catText;
 
-                dropdownList.appendChild(listGenre);
+    const catContainer = document.createElement("div");
+    catContainer.classList.add("category_film_container");
 
-            })
+    catCategory.appendChild(catTitle);
+    catCategory.appendChild(catContainer);
 
+    catResult.forEach((film, index) => {
+
+        // const catFilm = document.createElement("div");
+        // catFilm.classList.add("category_film");
+
+        // const catImg = document.createElement("img");
+        // catImg.classList.add("category_film_img")
+        // catImg.src = film.image_url;
+        // catImg.alt = film.title;
+
+        // const catContent = document.createElement("div");
+        // catContent.classList.add("category_film_content");
+
+        // const catSubTitle = document.createElement("h3");
+        // catSubTitle.classList.add("category_film_title");
+        // catSubTitle.innerText = film.title;
+
+        const catBtn = document.createElement("button");
+        catBtn.classList.add("category_film_button");
+        catBtn.id = `catBtnId-${film.id}`
+        catBtn.dataset.id = film.id
+        catBtn.textContent = "Détails"
+
+        catContent.appendChild(catSubTitle);
+        catContent.appendChild(catBtn);
+
+        catFilm.appendChild(catImg);
+        catFilm.appendChild(catContent);
+
+        catContainer.appendChild(catFilm);
+
+        catBtn.addEventListener("click", (e) => {
+            const movieId = e.target.dataset.id
+            displayModal(movieId);
         })
-        .catch(err => console.log(err));
+
+     } )
 }
 
-// dropdown menu
-const dropdownBtn = document.querySelector('.dropdown_btn')
-const dropdownMenu = document.querySelector('.dropdown_menu')
-const items = document.querySelectorAll('.dropdown_item')
-const selectedItem = document.getElementById('selected_item')
 
-// add global event listener for outside clik
-window.addEventListener('click', function () {
-    closeMenu
-})
-
-// dropdown open
-dropdownBtn.addEventListener('click', toggleMenu)
-
-// add click event listener to each item
-items.forEach(item => item.addEventListener('click', itemClickHandler))
-
-// toggle menu
-function toggleMenu() {
-    dropdownMenu.classList.toggle('open')
-}
-
-// close menu
-function closeMenu() {
-    dropdownMenu.classList.remove('open')
-}
-
-// item click handler
-function itemClickHandler(e) {
-    selectedItem.innerText = e.target.innerText
-    // change active class
-    items.forEach(item => item.classList.remove('active'))
-    // add active class to click item
-    e.target.classList.add('active')
-    closeMenu()
-}
+<i class="fa-thin fa-square-check"></i>

@@ -3,9 +3,9 @@ initCategory();
 
 
 function initCategory(){
-    fetchDataCategory("Animation");
-    fetchDataCategory("Sci-Fi");
-    fetchDataCategory("Action");   
+    fetchDataCategory("", "Films les mieux notés");
+    fetchDataCategory("Sci-Fi", "Sci-Fi");
+    fetchDataCategory("Action", "Action");   
 }
 
 /***** Information meilleur film *****/
@@ -32,11 +32,18 @@ function displayBestMovie() {
 }
 
 /***** film par catégorie *****/
-function fetchDataCategory(catUrl){
-    fetch(`http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&genre=${catUrl}&page_size=6`) 
+function fetchDataCategory(catUrl, catText){
+    let apiUrl;
+    if (catUrl !== "") {
+        apiUrl = `genre=${catUrl}`;
+    } else {
+        apiUrl = "";
+    }
+
+    fetch(`http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&${apiUrl}&page_size=6`) 
         .then(res => res.json())
         .then(movies => {
-            displayCategory(movies.results, catUrl)
+            displayCategory(movies.results, catText)
         })
         .catch(err => console.log(err));
 }
@@ -54,7 +61,7 @@ function displayCategory(catResult, catText){
     catCategory.appendChild(catTitle);
     catCategory.appendChild(catContainer);
 
-    catResult.forEach((film, index) => {
+    catResult.forEach(film => {
 
         const catFilm = document.createElement("div");
         catFilm.classList.add("category_film");
@@ -93,7 +100,7 @@ function displayCategory(catResult, catText){
      } )
 }
 
-// /***** Film liste déroulante *****/
+/***** Film avec dropdown *****/
 
 function filmByGenre(genreName) {
     fetch(`http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&genre=${genreName}&page_size=6`)
@@ -109,35 +116,41 @@ function filmByGenre(genreName) {
                 <img class="category_film_img" src="${film.image_url}" alt="${film.title}">
                 <div class="category_film_content">
                     <h3 class="category_film_title">${film.title}</h3>
-                    <button class="category_film_button" id="open_modal_btn">Détails</button>
+                    <button class="category_film_button" id="open_modal_btn" data-id="${film.id}">Détails</button>
                 </div>
             `;
             filmContainer.appendChild(filmElement);
+
+            const detailButton = filmElement.querySelector('.category_film_button');
+            detailButton.addEventListener("click", (e) => {
+                const movieId = e.currentTarget.dataset.id;
+                displayModal(movieId);
+            });
         });
+
     })
     .catch(err => console.error(err));
 }
 
-
-// close menu
+// fermer le menu
 function closeMenu() {
     dropdownMenu.classList.remove('open');
 }
 
-// dropdown menu
+// menu dropdown
 const dropdownBtn = document.querySelector('.dropdown_btn');
 const dropdownMenu = document.querySelector('.dropdown_menu');
 const selectedItem = document.getElementById('selected_item');
 
-// add global event listener for outside click
+// fermer le menu si on clique ailleurs
 window.addEventListener('click', function () {
     closeMenu
 })
 
-// dropdown open
+// ouvrir le menu
 dropdownBtn.addEventListener('click', toggleMenu);
 
-// Add click event listener using event delegation
+// Evenement au clique
 dropdownMenu.addEventListener('click', function(event) {
     if (event.target.classList.contains('dropdown_item')) {
         const selectedGenre = event.target.innerText;
@@ -152,18 +165,17 @@ function toggleMenu() {
     dropdownMenu.classList.toggle('open');
 }
 
-// function to fetch and populate dropdown items
+// fonction pour récupérér et remplir les éléments
 function fetchDropdownItems() {
-    fetch(`http://localhost:8000/api/v1/genres/`)
+    fetch(`http://localhost:8000/api/v1/genres/?page_size=25`)
         .then(res => res.json())
         .then(data => {
             const genres = data.results;
-            console.log(genres);
 
-            // Clear existing dropdown items
+            // Effacer les éléments du dropdown existants
             dropdownMenu.innerHTML = '';
 
-            // Create and append new dropdown items
+            // Créer et ajouter des éléments au dropdown
             genres.forEach(genre => {
                 const listGenre = document.createElement('div');
                 listGenre.classList.add("dropdown_item");
@@ -172,7 +184,7 @@ function fetchDropdownItems() {
                 dropdownMenu.appendChild(listGenre);
             });
 
-            // Reattach the click event listener after generating dropdown items
+            // evenement click 
             dropdownMenu.removeEventListener('click', function(event) {
                 if (event.target.classList.contains('dropdown_item')) {
                     selectedItem.innerText = event.target.innerText;
@@ -180,12 +192,6 @@ function fetchDropdownItems() {
                 }
             });
 
-            dropdownMenu.addEventListener('click', function(event) {
-                if (event.target.classList.contains('dropdown_item')) {
-                    selectedItem.innerText = event.target.innerText;
-                    closeMenu();
-                }
-            });
         })
         .catch(err => console.log(err));
 }
