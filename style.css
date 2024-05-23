@@ -1,7 +1,13 @@
 body {
     font-family: "Oswald", sans-serif;
     margin: 0px 100px 0px 100px;
+    width: calc(100% - 200px);
+}
 
+
+
+main {
+    width: 100%;
 }
 
 /***** header ******/
@@ -10,8 +16,10 @@ body {
     align-items: center;
     background-color: #61787F;
     margin-top: 60px;
+    width: 100%;
     
 }
+
 
 .header_title {
     color: white;
@@ -70,16 +78,25 @@ body {
 }
 
 .best_film_title_section {
-   font-size: 48px;
-   font-weight: 600; 
+    font-size: 48px;
+    font-weight: 600; 
 }
 
 /***** modal  *****/
+
 .dialog_modal {
-    position: absolute;
+    /* position: absolute; */
     border: 6px solid black;
+    width: 778px;
+    height: auto;
+    /* display: flex;
+    flex-wrap: wrap; */
 }
 
+.modal_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
 .modal_close_btn {
     border-radius: 25px;
     background-color: #FA0B0B;
@@ -96,18 +113,16 @@ body {
     transform: translateX(-50%);
 }
 
-.dialog_modal {
-    width: 778px;
-    height: auto;
-}
-
-.modal_info {
+.modal_button_container {
+    width: 100%;
     display: flex;
+    justify-content: center;
+    margin-top: 40px;
 }
 
 .modal_detail_film {
     width: 423px;
-    height: 360px;
+    /* height: 390px; */
     padding-right: 20px;
     box-sizing: border-box;
 }
@@ -116,13 +131,15 @@ body {
     width: 227px;
     height: 334px;
     margin-top: 34px;
+    object-fit: cover;
     background-color: lightgrey;
 }
 
 .modal_detail_title{
     font-size: 48px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 3px;
+    margin-top: 0px;
 }
 
 .modal_detail_date, .modal_detail_genre {
@@ -172,8 +189,20 @@ body {
 .modal_actor_list {
     font-weight: 300;
     margin: 0px;
+    font-size: 20px;
 }
 
+.modal_close_cross {
+    display: none;
+    font-size: 70px;
+    font-weight: 500;
+    color: #FA0B0B;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    margin-right: 24px;
+}
 
 /***** section catégorie *****/
 
@@ -182,18 +211,18 @@ body {
     font-weight: 600;
 }
 
-.category_film_container{
+.category_film_container, .category_film_list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 560px;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .category_film {
     width: 250px;
     height: 245px;
-    margin-left: 16px;
-    margin-right: 16px;
+    margin-bottom: 16px;
     position: relative;
     background-color: lightgrey;
 }
@@ -236,8 +265,35 @@ body {
     position: absolute;
 }
 
+.category_film_container.expanded, .category_film_list.expanded {
+    max-height: none;
+}
+
+
+.toggle_button {
+    display: none;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #FA0B0B;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    width: 214px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
 /***** Catégory avec menu *****/
 
+.select_category {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
 .dropdown_container {
     display: flex;
     align-items: flex-start;
@@ -249,6 +305,12 @@ body {
     font-size: 48px;
     font-weight: 600;
     margin: 0 10px 0 0;
+}
+
+.selected-item-icon {
+    margin-left: 10px;
+    color: rgb(7, 199, 7);
+    font-size: 24px;
 }
 
 .dropdown_wrapper{
@@ -320,8 +382,181 @@ body {
 
 /*****  category film select *****/
 
-.category_film_list{
+/* .category_film_list{
     display: flex;
+    flex-direction: row;
     flex-wrap: wrap;
-    height: 560px;
+    justify-content: space-between;
+
+} */
+
+/***** Media Queries *****/
+@media screen and ( width < 760px){
+    body {
+    margin: 0px 50px 0px 50px;
+    width: 80%;
+    }
+
+    .header_title {
+        display: none;
+    }
+
+    .header_img{
+        margin: auto;
+    }
+
+    .category_film_container, .category_film_list{
+        justify-content: space-around;
+        width: 100%;
+        margin: auto;
+        height: 620px;
+        overflow: hidden;
+    }
+
+    .category_film_container.expanded, .category_film_list.expanded {
+        height: 1860px;
+    }
+
+
+    .category_film{
+        width: 329px;
+        height: 329px;
+    }
+
+    .best_film_container{
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .best_film_detail{
+        padding-left: 0px;
+    }
+
+    .best_film_img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .best_film_title{
+        font-size: 32px;
+    }
+
+    .best_film_description{
+        font-size: 16px;
+    }
+
+    .best_film_button{
+        width: 91px;
+        height: 40px;
+        font-size: 14px;
+    
+    }
+
+    .best_film_title_section {
+        font-size: 32px;
+    }
+
+
+    .category_title_section {
+        font-size: 32px;
+    }
+
+    .select_category_title{
+        display: none;
+    }
+
+    .dropdown_wrapper{
+        width: 285px;
+    }
+
+    .dropdown_menu {
+        width: 285px;
+    }
+
+    .dropdown_container {
+        justify-content: center;
+    }
+
+    /* .category_film_list {
+        justify-content: center; 
+    }
+
+    .category_film_list.expanded {
+        height: 1860px;
+    } */
+} 
+
+@media screen and ( width < 1024px) {
+    .toggle_button {
+        display: flex;
+    }
+
+    .dialog_modal {
+        width: 70%;
+    }
+
+    .modal_close_btn {
+        display: none;
+    }
+
+    .modal_close_cross {
+        display: block;
+    }
+
+    .modal_detail_film {
+        order: 1;
+    }
+
+    .modal_img {
+        order: 3;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+
+    .modal_description {
+        order: 2;
+    }
+
+    .modal_actor {
+        order: 4;
+    }
+
+    .category_film {
+        width: 295px;
+        height: 295px;
+    }
+
+    .category_film_container, .category_film_list {
+        height: 620px;
+        overflow: hidden;
+    }
+
+    .category_film_container.expanded, .category_film_list.expanded  {
+        height: 1000px;
+    }
+
+    /* .category_film_list {
+        height: 620px;
+        overflow: hidden;  
+    } */
+
+    /* .category_film_list.expanded {
+        height: 1000px;
+    } */
+
 }
+
+@media screen and (width > 1199px){
+    .category_film_container, .category_film_list{
+        justify-content: space-around;
+        width: 90%;
+        margin: auto;
+    }
+        body {
+        width: 1054px;
+        margin:auto;
+
+    }
+}
+
