@@ -7,6 +7,7 @@ Le projet utilise les languages HTML, CSS et Javascript. La page se connecte à 
 ## Mise en place 
 
 Créez un nouveau dossier sur votre bureau avec le nom que vous souhaitez
+
 Téléchargez le contenu de ce dépôt via le bouton dédié ou, dans un terminal :
 
 ``` 
