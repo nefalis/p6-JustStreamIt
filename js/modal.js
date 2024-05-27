@@ -1,48 +1,50 @@
 
-/***** Gestion de la modal *****/
+/***** Modal management *****/
+
 const dialog = document.getElementById("dialog_modal");
 const showButton = document.getElementById("modal_open_btn");
 const closeButton = document.getElementById("modal_close_btn");
 const closeCross = document.getElementById("modal_close_cross")
 
-// Le bouton "Afficher la fenêtre" ouvre le dialogue
+// Add an event listener to open the modal on button click
 showButton.addEventListener("click", (e) => {
     const movieId = e.target.dataset.id
     displayModal(movieId);
-    
 });
 
-// Le bouton "Fermer" ferme le dialogue
+// Add an event listener to close the modal on button click
 closeButton.addEventListener("click", () => {
     dialog.close();
 });
-
+// Add an event listener to close the modal when the close cross is clicked
 closeCross.addEventListener("click", () => {
     dialog.close();
 });
 
-/***** Information sur le film *****/
+/***** Displaying movie information in the modal *****/
+
 function displayModal(movieId){
             fetch(`http://localhost:8000/api/v1/titles/`+ movieId)
                 .then(res => res.json())
                 .then(movieDetails => {
-                    // Supprimer l'image précédente si elle existe
+                    // Delete the previous image if it exists to avoid duplicates
                     const existingImg = document.getElementById("modal_img");
                     if (existingImg) {
                         existingImg.remove();
                     }
 
-                    // element image
+                    // Creates a new image element for the movie
                     const modalImg = document.createElement("img");
                     modalImg.className = "modal_img";
                     modalImg.src = movieDetails.image_url;
                     modalImg.alt = "Affiche du film " + movieDetails.title;
                     modalImg.id = "modal_img";
         
-                    // Insertion de l'image dans le DOM
+                    // Insert the image into the DOM, after the movie details
                     const modalInfo = document.querySelector(".modal_detail_film");
                     modalInfo.insertAdjacentElement("afterend", modalImg);
 
+                    // Updates movie details in modal
                     document.getElementById("modal_detail_title").textContent = movieDetails.title;
                     document.getElementById("long_description").textContent = movieDetails.long_description;
                     document.getElementById("modal_detail_date").textContent = movieDetails.year + " - ";
@@ -53,17 +55,15 @@ function displayModal(movieId){
                     document.getElementById("modal_detail_director").textContent = movieDetails.directors;
                     document.getElementById("modal_actor_list").textContent = movieDetails.actors;
 
+                    // Updates the film rating, if available
                     const ratedElement = document.getElementById("modal_detail_classification");
                     if (movieDetails.rated === "Not rated or unkown rating") {
                         ratedElement.textContent = " ";
                     } else {
                         ratedElement.textContent = "PEG - " + movieDetails.rated +" -"; 
                     }
-                    
+                    // Shows the modal with movie details
                     dialog.showModal();
                 })
-
-
             .catch(err => console.log(err));
 }
-

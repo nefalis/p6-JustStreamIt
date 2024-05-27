@@ -1,7 +1,7 @@
-// Appel pour afficher le meilleur film
+// Call to show the best film
 displayBestMovie();
 
-// Fonction d'initialisation des catégories avec gestion des erreurs
+// Category initialization function with error handling
 const init = async () => {
     try {
         await fetchDataCategory("", "Films les mieux notés");
@@ -12,18 +12,18 @@ const init = async () => {
     }
 };
 
-/***** Information meilleur film *****/
+/***** Information best film *****/
 
 function displayBestMovie() {
-    // Requête pour obtenir le film le mieux noté
+    // Query to get top rated movie
     fetch('http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&page_size=1&page=1')
         .then(res => res.json())
         .then(data => {
-            // Requête pour obtenir les détails du film
+            // Query to get movie details
             fetch(`http://localhost:8000/api/v1/titles/`+ data.results[0].id)
                 .then(res => res.json())
                 .then(movieDetails => {
-                    // Création et insertion de l'image du meilleur film
+                    // Creation and insertion of the image of the best film
                     const bestFilmImg = document.createElement("img");
                     bestFilmImg.className = "best_film_img";
                     bestFilmImg.src = movieDetails.image_url;
@@ -31,7 +31,7 @@ function displayBestMovie() {
                     bestFilmImg.id = "best_film_img";
                     const bestFilmContainer = document.querySelector(".best_film_container");
                     bestFilmContainer.insertAdjacentElement("afterbegin", bestFilmImg);
-                    // Mise à jour des informations du meilleur film
+                    // Best Picture Information Update
                     document.getElementById("best_film_title").innerText = movieDetails.title;
                     document.getElementById("best_film_description").innerText = movieDetails.description;
                     document.getElementById("modal_open_btn").dataset.id = movieDetails.id
@@ -41,7 +41,7 @@ function displayBestMovie() {
         .catch(err => console.log(err));
 }
 
-/***** Récupération des films par catégorie *****/
+/***** Recovery of films by category *****/
 
 function fetchDataCategory(catUrl) {
     let apiUrl = catUrl !== "" ? `genre=${catUrl}` : "";
@@ -49,7 +49,7 @@ function fetchDataCategory(catUrl) {
         .then(res => res.json())
 }
 
-// Initialisation des catégories avec gestion asynchrone
+// Initialization of categories with asynchronous management
 const initCategories = () => {
     Promise.all([
         fetchDataCategory(""),
@@ -68,7 +68,7 @@ const initCategories = () => {
 
 initCategories();
 
-// Création d'un élément de film pour une catégorie
+// Creating a movie item for a category
 function createFilmElement(film) {
     const catFilm = document.createElement("div");
     catFilm.classList.add("category_film");
@@ -97,7 +97,7 @@ function createFilmElement(film) {
     catFilm.appendChild(catImg);
     catFilm.appendChild(catContent);
 
-    // Ajout d'un écouteur d'événement pour ouvrir le modal des détails du film
+    // Added event listener to open movie details modal
     catBtn.addEventListener("click", (e) => {
         const movieId = e.target.dataset.id;
         displayModal(movieId);
@@ -105,7 +105,7 @@ function createFilmElement(film) {
     return catFilm;
 }
 
-// Création d'un bouton de basculement pour afficher plus ou moins de films
+// Creating a toggle button to show more or fewer movies
 function createToggleBtn(container) {
     const toggleBtn = document.createElement("button");
     toggleBtn.classList.add("toggle_button");
@@ -118,7 +118,7 @@ function createToggleBtn(container) {
     return toggleBtn;
 }
 
-// Affichage des films par catégorie
+// Viewing movies by category
 function displayCategory(catResult, catText) {
     const catCategory = document.querySelector(".category");
 
@@ -135,7 +135,7 @@ function displayCategory(catResult, catText) {
     catSection.appendChild(catTitle);
     catSection.appendChild(catContainer);
     catCategory.appendChild(catSection);
-    // Ajout des films dans la catégorie
+    // Adding films to the category
     catResult.forEach(film => {
         const filmElement = createFilmElement(film);
         catContainer.appendChild(filmElement);
@@ -145,7 +145,7 @@ function displayCategory(catResult, catText) {
     catSection.appendChild(toggleBtn);
 }
 
-/***** Affichage des films par genre avec dropdown *****/
+/***** Displaying films by genre with dropdown *****/
 
 function filmByGenre(genreName) {
     fetch(`http://localhost:8000/api/v1/titles/?sort_by=-imdb_score&genre=${genreName}&page_size=6`)
@@ -154,23 +154,23 @@ function filmByGenre(genreName) {
         const films = data.results;
         const filmContainer = document.querySelector('.category_film_list');
 
-        // Vérification que le conteneur parent est défini
+        // Verifying that the parent container is defined
         const parentContainer = filmContainer ? filmContainer.parentElement : null;
 
         if (parentContainer) {
-            // Suppression des boutons de basculement existants
+            // Removing existing toggle buttons
             const existingToggleBtn = parentContainer.querySelector(".toggle_button");
                 if (existingToggleBtn) {
                     existingToggleBtn.remove();
                 }
             }
 
-            // Effacement du contenu existant dans le conteneur de films
+            // Clearing existing content in the movie container
             if (filmContainer) {
                 filmContainer.innerHTML = '';
             }
 
-        // Ajout des films au conteneur
+        // Adding films to the container
         films.forEach(film => {
             const filmElement = createFilmElement(film);
             filmContainer.appendChild(filmElement);
@@ -182,25 +182,25 @@ function filmByGenre(genreName) {
     .catch(err => console.error(err));   
 }
 
-/***** Gestion du menu dropdown *****/
+/***** Dropdown menu management *****/
 
-// Fermer le menu dropdown
+// Close dropdown menu
 function closeMenu() {
     dropdownMenu.classList.remove('open');
 }
 
-// Sélection des éléments du menu dropdown
+// Selecting dropdown menu items
 const dropdownBtn = document.querySelector('.dropdown_btn');
 const dropdownMenu = document.querySelector('.dropdown_menu');
 const selectedItem = document.getElementById('selected_item');
 
-// Ouvrir ou fermer le menu dropdown
+// Open or close the dropdown menu
 dropdownBtn.addEventListener('click', toggleMenu);
 
-// Gestion des clics dans le menu dropdown
+// Managing clicks in the dropdown menu
 dropdownMenu.addEventListener('click', function(event) {
     if (event.target.classList.contains('dropdown_item')) {
-         // Suppression de l'icône des éléments précédemment sélectionnés
+         // Removing the icon from previously selected items
         const previouslySelected = document.querySelector('.dropdown_item.selected');
         if (previouslySelected) {
             previouslySelected.classList.remove('selected');
@@ -210,38 +210,38 @@ dropdownMenu.addEventListener('click', function(event) {
             }
         }
 
-        // Ajout de l'icône à l'élément actuellement sélectionné
+        // Adding the icon to the currently selected item
         const selectedGenre = event.target.innerText;
         event.target.classList.add('selected');
         event.target.innerHTML = selectedGenre + ' <i class="fa fa-check-square selected-item-icon"></i>';
         
-        // Mise à jour du texte du bouton dropdown
+        // Updating dropdown button text
         selectedItem.innerText = selectedGenre;
 
-        // Chargement des films par genre
+        // Loading movies by genre
         filmByGenre(selectedGenre);
         
-        // Fermer le menu
+        // Close menu
         closeMenu();
     }
 });
 
-// Bascule du menu dropdown
+// Dropdown menu toggle
 function toggleMenu() {
     dropdownMenu.classList.toggle('open');
 }
 
-// Récupération des éléments du dropdown et remplissage du menu
+// Retrieving dropdown items and filling the menu
 function fetchDropdownItems() {
     fetch(`http://localhost:8000/api/v1/genres/?page_size=25`)
         .then(res => res.json())
         .then(data => {
             const genres = data.results;
 
-            // Effacement des éléments du dropdown existants
+            // Clearing existing dropdown items
             dropdownMenu.innerHTML = '';
 
-            // Création et ajout des éléments au dropdown
+            // Creating and adding elements to the dropdown
             genres.forEach(genre => {
                 const listGenre = document.createElement('div');
                 listGenre.classList.add("dropdown_item");
@@ -250,7 +250,7 @@ function fetchDropdownItems() {
                 dropdownMenu.appendChild(listGenre);
             });
 
-            // Événement de clic pour sélectionner un genre
+            // Click event to select genre
             dropdownMenu.removeEventListener('click', function(event) {
                 if (event.target.classList.contains('dropdown_item')) {
                     selectedItem.innerText = event.target.innerText;
