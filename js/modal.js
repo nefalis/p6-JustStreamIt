@@ -36,7 +36,7 @@ function displayModal(movieId){
                     const modalImg = document.createElement("img");
                     modalImg.className = "modal_img";
                     modalImg.src = movieDetails.image_url;
-                    modalImg.alt = movieDetails.title;
+                    modalImg.alt = "Affiche du film " + movieDetails.title;
                     modalImg.id = "modal_img";
         
                     // Insertion de l'image dans le DOM

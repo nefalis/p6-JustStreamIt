@@ -12,79 +12,80 @@
 </head>
 
 <body>
-<header class="header">
-    <img class="header_img" alt="logo JustStreamIt" src="assets/JustStreamIt.png">
-    <h1 class="header_title">Vidéos à la demande</h1>
-</header>
-<main>
-    <div class="modal_container" id="myModal">
-        <dialog class="dialog_modal" id="dialog_modal">
-            <div class="modal_wrapper">
-                <div class="modal_detail_film">
-                    <p class="modal_detail_title" id="modal_detail_title"></p><br>
 
-                    <p class="modal_detail_date" id="modal_detail_date"></p> 
-                    <p class="modal_detail_genre" id="modal_detail_genre"></p><br>
+    <header class="header">
+        <img class="header_img" alt="logo JustStreamIt" src="assets/JustStreamIt.png">
+        <h1 class="header_title">Vidéos à la demande</h1>
+    </header>
 
-                    <p class="modal_detail_classification" id="modal_detail_classification"></p> 
-                    <p class="modal_detail_duration" id="modal_detail_duration"></p>
-                    <p class="modal_detail_country" id="modal_detail_country"></p><br>
+    <main>
+        <div class="modal_container" id="myModal">
+            <dialog class="dialog_modal" id="dialog_modal">
+                <div class="modal_wrapper">
+                    <div class="modal_detail_film">
+                        <p class="modal_detail_title" id="modal_detail_title"></p><br>
 
-                    <p class="modal_detail_IMDB" id="modal_detail_IMDB"></p>
+                        <p class="modal_detail_date" id="modal_detail_date"></p> 
+                        <p class="modal_detail_genre" id="modal_detail_genre"></p><br>
 
-                    <p class="modal_detail_director_p">Réalisé par:</p>
-                    <p class="modal_detail_director" id="modal_detail_director"></p>
+                        <p class="modal_detail_classification" id="modal_detail_classification"></p> 
+                        <p class="modal_detail_duration" id="modal_detail_duration"></p>
+                        <p class="modal_detail_country" id="modal_detail_country"></p><br>
+
+                        <p class="modal_detail_IMDB" id="modal_detail_IMDB"></p>
+
+                        <p class="modal_detail_director_p">Réalisé par:</p>
+                        <p class="modal_detail_director" id="modal_detail_director"></p>
+                    </div>
+                    
+                    <div class="modal_description">
+                        <p class="modal_description_film" id="long_description"></p>
+                    </div>
+                    <div class="modal_actor">
+                        <p class="modal_actor_p">Avec :</p>
+                        <p class="modal_actor_list" id="modal_actor_list"></p>
+                    </div>
+                    <div class="modal_button_container">
+                        <button autofocus class="modal_close_btn" id="modal_close_btn">Fermer</button>
+                        <span class="modal_close_cross" id="modal_close_cross">&times;</span>
+                    </div>
+                </div> 
+            </dialog>
+        </div>
+
+        <section class="best_film" >
+            <h2 class="best_film_title_section">Meilleur film</h2>
+            <div class="best_film_container">
+                <div class="best_film_detail">
+                    <h2 class="best_film_title" id="best_film_title">Titre du film</h2>
+                    <p class="best_film_description" id="best_film_description"></p>
+                    <button id="modal_open_btn" class="best_film_button">Détails</button>
                 </div>
-                
-                <div class="modal_description">
-                    <p class="modal_description_film" id="long_description"></p>
-                </div>
-                <div class="modal_actor">
-                    <p class="modal_actor_p">Avec :</p>
-                    <p class="modal_actor_list" id="modal_actor_list"></p>
-                </div>
-                <div class="modal_button_container">
-                    <button autofocus class="modal_close_btn" id="modal_close_btn">Fermer</button>
-                    <span class="modal_close_cross" id="modal_close_cross">&times;</span>
-                </div>
-            </div> 
-        </dialog>
-    </div>
-
-    <section class="best_film" >
-        <h2 class="best_film_title_section">Meilleur film</h2>
-        <div class="best_film_container">
-            <div class="best_film_detail">
-                <h2 class="best_film_title" id="best_film_title">Titre du film</h2>
-                <p class="best_film_description" id="best_film_description"></p>
-                <button id="modal_open_btn" class="best_film_button">Détails</button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="category"></div>
+        <div class="category"></div>
 
-    <section class="select_category">
-        <div class="dropdown_container">
-            <h2 class="select_category_title">Autres:</h2>
-            <div class="dropdown_wrapper">
-                <div class="dropdown_btn">
-                    <span id="selected_item"></span>
-                    <span><i class="fa-solid fa-caret-down"></i></span>
+        <section class="select_category">
+            <div class="dropdown_container">
+                <h2 class="select_category_title">Autres:</h2>
+                <div class="dropdown_wrapper">
+                    <div class="dropdown_btn">
+                        <span id="selected_item"></span>
+                        <span><i class="fa-solid fa-caret-down"></i></span>
+                    </div>
+                    <div class="dropdown_menu" id="dropdown_menu"> </div>
                 </div>
-                <div class="dropdown_menu" id="dropdown_menu"> </div>
             </div>
-        </div>
-        <div class="category">
-            <div class="category_film_list"></div>
-        </div>
+            <div class="category">
+                <div class="category_film_list"></div>
+            </div>
+        </section>
         
-    </section>
-</main>
+    </main>
 
-<script src="js/modal.js"></script>
-<script src="js/category.js" type="module"></script>
+    <script src="js/modal.js"></script>
+    <script src="js/category.js" type="module"></script>
 
 </body>
-
 </html>
