@@ -373,6 +373,7 @@ main {
 
 /***** Media Queries *****/
 
+/* Styles for screens with a maximum width of 760px */
 @media screen and ( max-width: 760px){
     body {
     margin: 0 50px 0 50px;
@@ -471,6 +472,7 @@ main {
     }
 } 
 
+/* Styles for screens with a maximum width of 1024px */
 @media screen and ( max-width: 1024px) {
 
     .toggle_button {
@@ -533,6 +535,7 @@ main {
     }
 }
 
+/* Styles for screens with a minimum width of 1200px */
 @media screen and (min-width: 1200px) {
     .category_film_container,
     .category_film_list {
